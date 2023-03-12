@@ -1,14 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link rel="stylesheet" href="leaflet/leaflet.css">
 </head>
+
 <body>
-    
+
+
+    <div id="mapa" style="width: 80vw; height: 80vh;">
+
+    </div>
+
+    <script src="leaflet/leaflet.js"></script>
+    <script src="push.min.js"></script>
     <script>
+
+        Push.Permission.request();
+
+        setInterval(() => {
+            Push.create('Hi there!', {
+                body: 'This is a notification.',
+                icon: 'icon.png',
+                timeout: 8000,               // Timeout before notification closes automatically.
+                vibrate: [100, 100, 100],    // An array of vibration pulses for mobile devices.
+                onClick: function () {
+                    // Callback for when the notification is clicked. 
+                    console.log(this);
+                }
+            });
+        }, 3000);
+
+        /* var lat = 22.902977;
+        var lon = -81.03625
+
+        var mapa = L.map('mapa').setView([lat, lon], 16);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(mapa);
+
+
+        var popup = L.popup();
+
+        function onMapClick(e) {
+            popup
+                .setLatLng(e.latlng)
+                .setContent("<button>Si </button> You clicked the map at " + e.latlng.toString())
+                .openOn(mapa);
+        }
+
+        mapa.on('click', onMapClick);
+
+        var myPositionMarker = L.marker([lat, lon], { dragable: true }).addTo(mapa); */
+
+    </script>
+
+    <!-- <script>
         if("geolocation" in navigator){
             navigator.geolocation.getCurrentPosition(function name(position) {
                 let lat = position.coords.latitude
@@ -18,6 +72,7 @@
         }else{
             document.write("No soportada")
         }
-    </script>
+    </script> -->
 </body>
+
 </html>
